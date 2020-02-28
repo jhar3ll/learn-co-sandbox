@@ -2,7 +2,8 @@ class OwnersController < ApplicationController
 
   get '/owners' do
     @owners = Owner.all
-    erb :'/owners/index' 
+    erb :'/owners/index'
+    redirect to 
   end
 
   get '/owners/new' do 
