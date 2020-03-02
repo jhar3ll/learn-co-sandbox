@@ -1,9 +1,8 @@
 class OwnersController < ApplicationController
 
-  get '/owners' do
-    @owners = Owner.all
-    erb :'/owners/index'
-    redirect to 
+  get '/owners/:slug' do
+    @owner = Owner.find_by_slug(params[:slug])
+    erb :'/owners/show'
   end
 
   get '/owners/new' do 
