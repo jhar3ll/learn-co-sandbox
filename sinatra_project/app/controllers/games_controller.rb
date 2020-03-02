@@ -4,11 +4,18 @@ class GamesController < ApplicationController
     if logged_in?
     @games = Game.all
     erb :'/games/index'
-  end
+  else 
+    redirect to '/login'
+  end 
+end
 
   get '/games/new' do
+    if logged_in?
     erb :'/games/new'
-  end
+  else 
+    redirect to '/login'
+  end 
+end
 
   post '/games' do
     @game = Game.create(params[:game])

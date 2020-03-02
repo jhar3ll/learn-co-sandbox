@@ -1,4 +1,4 @@
-class Owner < ActiveRecord::Base
+class User < ActiveRecord::Base
   has_many :games
   
   has_secure_password
@@ -8,6 +8,6 @@ class Owner < ActiveRecord::Base
   end 
   
   def self.find_by_slug(slug)
-    Owner.all.find{|owner| owner.slug == slug}
+    User.all.find{|owner| owner.slug == slug}
   end 
 end
