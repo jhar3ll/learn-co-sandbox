@@ -7,22 +7,22 @@ class OwnersController < ApplicationController
   end
 
   get '/owners/new' do 
-    @pets = Pet.all
+    @games = Game.all
     erb :'/owners/new'
   end
 
   post '/owners' do 
     @owner = Owner.create(params[:owner])
   
-    if !params["pet"]["name"].empty?
-      @owner.pets << Pet.create(name: params["pet"]["name"])
+    if !params["game"]["name"].empty?
+      @owner.games << Game.create(name: params["game"]["name"])
     end
-    redirect "owners/#{@owner.id}"
+    redirect to "owners/#{@owner.id}"
    end
 
   get '/owners/:id/edit' do
     @owner = Owner.find(params[:id])
-    @pets = Pet.all
+    @games = Game.all
     erb :'/owners/edit'
   end
 
@@ -33,15 +33,15 @@ class OwnersController < ApplicationController
 
   patch '/owners/:id' do
    
-    if !params[:owner].keys.include?("pet_ids")
+    if !params[:owner].keys.include?("game_ids")
     params[:owner]["pet_ids"] = []
     end
  
     @owner = Owner.find(params[:id])
     @owner.update(params["owner"])
-    if !params["pet"]["name"].empty?
-      @owner.pets << Pet.create(name: params["pet"]["name"])
+    if !params["game"]["name"].empty?
+      @owner.games << Game.create(name: params["game"]["name"])
     end
-    redirect "owners/#{@owner.id}"
+    redirect to "owners/#{@owner.id}"
 end
   end
