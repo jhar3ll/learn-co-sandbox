@@ -18,32 +18,74 @@ end
 end
 
   post '/games' do
-    @game = Game.create(params[:game])
-    if !params["owner"]["name"].empty?
-      @game.owner = Owner.create(name: params["owner"]["name"])
+    if logged_in?
+      if params[:content] == ""
+        redirect to "/games/new"
+      else
+        @game = current_user.games.build(content: params[:content])
+        if @game.save
+          redirect to "/games/#{@game.id}"
+        else
+          redirect to "/games/new"
+        end
+      end
+    else
+      redirect to '/login'
     end
-    @game.save
-    redirect "game/#{@game.id}"
   end
 
   get '/games/:id' do
-    @game = Game.find(params[:id])
-    @owners = Owner.all
-    erb :'/games/show'
-  end
-
-  patch '/games/:id' do 
-    @game = Game.find(params[:id])
-    @game.update(params["game"])
-    if !params["owner"]["name"].empty?
-      @game.owner = Owner.create(name: params["owner"]["name"])
+    if logged_in?
+      @game = Game.find_by_id(params[:id])
+      erb :'/games/show'
+    else
+      redirect to '/login'
     end
-    @game.save
-    redirect to "games/#{@game.id}"
   end
 
-  get '/games/:id/edit' do
-    @game = Game.find(params[:id])
-    erb :'/games/edit'
+  patch '/games/:id' do
+    if logged_in?
+      if params[:content] == ""
+        redirect to "/games/#{params[:id]}/edit"
+      else
+        @game = Game.find_by_id(params[:id])
+        if @game && @game.user == current_user
+          if @game.update(content: params[:content])
+            redirect to "/games/#{@game.id}"
+          else
+            redirect to "/games/#{@game.id}/edit"
+          end
+        else
+          redirect to '/games'
+        end
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+   get '/tweets/:id/edit' do
+    if logged_in?
+      @game = Game.find_by_id(params[:id])
+      if @game && @game.user == current_user
+        erb :'/games/edit'
+      else
+        redirect to '/games'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+  
+   delete '/games/:id/delete' do
+    if logged_in?
+      @game = Game.find_by_id(params[:id])
+      if @game && @game.user == current_user
+        @game.delete
+      end
+      redirect to '/games'
+    else
+      redirect to '/login'
+    end
   end
 end

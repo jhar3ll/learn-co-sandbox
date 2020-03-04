@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.string "name"
   end
 
-  create_table "pets", force: :cascade do |t|
+  create_table "games", force: :cascade do |t|
     t.string "name"
     t.integer "owner_id"
   end
