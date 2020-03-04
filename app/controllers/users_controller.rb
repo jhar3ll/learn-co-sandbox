@@ -4,14 +4,14 @@ class UsersController < ApplicationController
   
    get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
+    erb :'/users/show'
   end
   
   get '/signup' do
     if !logged_in?
-      erb :'users/create_user', locals: {message: "Please sign up before you sign in"}
+      erb :'/users/create_user'
     else 
-      redirect to '/tweets'
+      redirect to '/games'
     end
   end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to '/tweets'
+      redirect to '/games'
     end
   end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/login'
     else
-      redirect to '/tweets'
+      redirect to '/games'
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to "/tweets"
+      redirect to "/games"
     else
       redirect to '/signup'
     end

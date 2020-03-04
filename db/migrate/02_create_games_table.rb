@@ -1,6 +1,6 @@
-class CreateTweetsTable < ActiveRecord::Migration[4.2]
+class CreateGamesTable < ActiveRecord::Migration[4.2]
   def change
-    create_table :tweets do |t|
+    create_table :games do |t|
       t.text :content
       t.integer :user_id
 
