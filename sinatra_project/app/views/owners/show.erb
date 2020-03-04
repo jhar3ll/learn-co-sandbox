@@ -1,5 +1,5 @@
 <p> Here are your games, <%= @user.username %>
-<% @user.games.each do |game| %>
+<% @owner.games.each do |game| %>
   <div>
     <%= game.content %>
   </div>
