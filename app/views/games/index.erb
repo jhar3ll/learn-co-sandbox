@@ -1,11 +1,19 @@
 <div class="container">
       <h1> Welcome, <%=current_user.username.capitalize()%>!</h1>
     </div> 
-<h2> Here Are Your Games! </h2>
+    
+<p>Select an existing game or add a new one below.</p>
+ 
+ 
+  <h3>Existing Games:</h3>
+  <% @games.each do |game| %>
+    <input type="checkbox" name="user[game_ids][]" id="<%= game.id %>" value="<%= game.id %>"><%= game.name %></input><br>
+  <% end %>
+  <br>
 
-<h3> Games: </h3>
-<% @games.each do |game| %>
-  <div>
-    <%= game.content %>
-  </div>
-<% end %>
+ <h3>New Game</h3>
+  <label>Game Name: </label>
+  <br>
+  <input type="text" name="game[name]" id="game_name"></input>
+  <br><br>
+ 
