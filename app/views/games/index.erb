@@ -2,19 +2,10 @@
       <h1> Welcome, <%=current_user.username.capitalize()%>!</h1>
     </div> 
   
-<p>Select an existing game or add a new one below.</p>
- 
- 
-  <h3>Existing Games:</h3>
-  <% @games.each do |game| %>
-    <input type="checkbox" name="user[game_ids][]" id="<%= game.id %>" value="<%= game.id %>"><%= game.name %></input><br>
-  <% end %>
-  <br>
+<h2>Here are your games! :</h2>
 
- <h3>New Game:</h3>
- <form action="/games" method="POST">
-  <label>Game Name:</label>
-  <input type="text" name="game[name]" id="game_name">
- 
-  <input type="submit" value="Create Game">
-</form>
+<% @games.each do |game| %>
+  <div>
+    <%= game.content %>
+  </div>
+<% end %>
