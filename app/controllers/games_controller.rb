@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     end
   end
 
-  post '/games/' do
+  post '/games' do
     if logged_in?
       if params[:content] == ""
         redirect to "/games/new"

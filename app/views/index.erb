@@ -1,10 +1,10 @@
 <nav>
   <% if logged_in? %>
   <div class="container">
-      <h1><%=current_user.username.capitalize()%>, welcome to your game collection!</h1>
+      <h1><%=current_user.username.capitalize()%>, welcome to MyGames!</h1>
       
     </div>
-    <a href="/games/index"> View Collection</a>
+    <a href="/games"> View Game Collection</a>
     <p></p>
     <a href="/games/new"> Add a new game </a>
     <p></p>
