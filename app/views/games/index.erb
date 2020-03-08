@@ -7,9 +7,9 @@
 <ul>
 <% @games.each do |game| %>
   <div>
-  <li><%= game.content %>  &nbsp <a href="/games/<%=game.id%>"> edit </a>
+  <li><%= game.content %>  &nbsp <a href="/games/<%=game.id%>"> Edit </a>
        &nbsp
-      <a href="/games/<%=game.id%>/delete"> delete </a>
+      <a href="/games/<%=game.id%>/delete"> Delete </a>
   </div>
   </li>
 <% end %>
