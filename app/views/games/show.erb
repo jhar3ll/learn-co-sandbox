@@ -1,13 +1,25 @@
 <h1><%= @game.content %></h1>
 
-<form method="post" action="/games/<%=@game.id%>/delete">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Game">
-</form>
-
 <form method="POST" action="/games/<%=@game.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <input type="text" name="content" value="<%= @game.content %>">
   <input type="submit" value="Edit Game">
 </form>
+
+<p> 
+</p>
+<form method="post" action="/games/<%=@game.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Game">
+</form>
+
+<p></p>
+
+<div>
+   <a href="/games"> View Game Collection</a>
+    <p></p>
+    <a href="/games/new"> Add a new game </a>
+    <p></p>
+    <a href="/logout"> Log Out </a>
+</div>
 

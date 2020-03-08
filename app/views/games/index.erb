@@ -6,6 +6,15 @@
 
 <% @games.each do |game| %>
   <div>
-      <%= game.content %> 
+      <%= game.content %> <a href="/games/<%=game.id%>"> edit </a>
   </div>
+  
 <% end %>
+
+<p></p>
+
+<div>
+    <a href="/games/new"> Add a new game </a>
+    <p></p>
+    <a href="/logout"> Log Out </a>
+</div>

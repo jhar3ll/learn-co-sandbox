@@ -3,7 +3,6 @@ class GamesController < ApplicationController
   get '/games' do
     if logged_in?
       @games = Game.all
-      @ind_game = Game.find_by_id(params[:id])
       erb :'/games/index'
     else
       redirect to '/login'

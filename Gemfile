@@ -11,4 +11,5 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
+gem "rack", ">= 2.0.8"
 
