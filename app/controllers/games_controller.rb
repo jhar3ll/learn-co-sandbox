@@ -88,4 +88,14 @@ class GamesController < ApplicationController
       redirect to '/login'
     end
   end
+  
+  get '/last_game' do 
+    @game = Game.all[-1]
+    erb :'/games/show'
+  end
+
 end
+
+#Create a custom route , a GET request to /last_game, that shows the user in the browser the last game created 
+
+  
